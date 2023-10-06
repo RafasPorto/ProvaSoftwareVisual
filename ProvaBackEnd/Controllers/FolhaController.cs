@@ -16,13 +16,24 @@ public class FolhaController:ControllerBase
 
     [HttpPost]
     [Route("cadastrar")]
-    public IActionResult Cadastrar([FromBody] Folha NovaFolha)
+    public IActionResult Cadastrar([FromBody] int valor, int quantidade, int mes, int ano, int FuncionarioId)
     {
         try
         {
-            _ctx.Folhas.Add(NovaFolha);
+            Folha novaFolha= new Folha();
+            novaFolha.ValorHora = valor;
+            novaFolha.QuantidadeHoras=quantidade;
+            novaFolha.Mes=mes;
+            novaFolha.Ano = ano;
+            novaFolha.Funcionario.FuncionarioId= FuncionarioId;
+            novaFolha.SalarioBruto =novaFolha.SalarioB();
+            novaFolha.ImpostoRenda =novaFolha.ImpostoRendaCalc();
+            novaFolha.Inss =novaFolha.InssCalc();
+            novaFolha.Fgts =novaFolha.FgtsCalc();
+            novaFolha.SalarioLiquido =novaFolha.SalarioL();
+            _ctx.Add(novaFolha);
             _ctx.SaveChanges();
-            return Created("", NovaFolha);
+            return Created("", novaFolha);
 
         }
         catch (Exception e)

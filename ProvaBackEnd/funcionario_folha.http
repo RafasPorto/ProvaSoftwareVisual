@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 @base_url = http://localhost:5087/api
 
 # FUNCIONÁRIO ######################################
 
 ### Criação de um novo funcionário
 POST http://localhost:5087/api/funcionario/cadastrar
+=======
+# FUNCIONÁRIO ######################################
+
+### Criação de um novo funcionário
+POST localhost:5087/api/funcionario/cadastrar
+>>>>>>> e93966a87f624411de8b8f399be39f95aae5d7e4
 Content-Type: application/json
 
 {
@@ -17,7 +24,11 @@ GET http://localhost:5087/api/funcionario/listar
 # FOLHA ############################################
 
 ### Criação de uma nova folha
+<<<<<<< HEAD
 POST http://localhost:5087/api/folha/cadastrar
+=======
+POST https://localhost:5087/api/funcionario/cadastrar
+>>>>>>> e93966a87f624411de8b8f399be39f95aae5d7e4
 Content-Type: application/json
 
 {

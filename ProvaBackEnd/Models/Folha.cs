@@ -18,7 +18,7 @@ public class Folha
     public Funcionario? Funcionario { get; set; }
     public Folha()
     {
-        // Construtor Vazio
+        
     }
 
     public double SalarioB()
