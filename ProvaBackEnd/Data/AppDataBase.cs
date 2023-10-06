@@ -15,4 +15,15 @@ public class AppDataContext : DbContext
     {
         optionsBuilder.UseSqlite("Data Source=database.db");
     }
+
+     protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Funcionario>()
+            .ToTable("Funcionarios");
+
+        modelBuilder.Entity<Folha>()
+            .ToTable("Folhas");
+
+        base.OnModelCreating(modelBuilder);
+    }
 }

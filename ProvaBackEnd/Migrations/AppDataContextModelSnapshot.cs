@@ -57,7 +57,7 @@ namespace ProvaBackEnd.Migrations
 
                     b.HasIndex("FuncionarioId");
 
-                    b.ToTable("Folhas");
+                    b.ToTable("Folhas", (string)null);
                 });
 
             modelBuilder.Entity("ProvaBackEnd.Models.Funcionario", b =>
@@ -74,7 +74,7 @@ namespace ProvaBackEnd.Migrations
 
                     b.HasKey("FuncionarioId");
 
-                    b.ToTable("Funcionarios");
+                    b.ToTable("Funcionarios", (string)null);
                 });
 
             modelBuilder.Entity("ProvaBackEnd.Models.Folha", b =>

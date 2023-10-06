@@ -11,8 +11,8 @@ using ProvaBackEnd.Data;
 namespace ProvaBackEnd.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20231006131709_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231006135637_initialMigration")]
+    partial class initialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,7 +60,7 @@ namespace ProvaBackEnd.Migrations
 
                     b.HasIndex("FuncionarioId");
 
-                    b.ToTable("Folhas");
+                    b.ToTable("Folhas", (string)null);
                 });
 
             modelBuilder.Entity("ProvaBackEnd.Models.Funcionario", b =>
@@ -77,7 +77,7 @@ namespace ProvaBackEnd.Migrations
 
                     b.HasKey("FuncionarioId");
 
-                    b.ToTable("Funcionarios");
+                    b.ToTable("Funcionarios", (string)null);
                 });
 
             modelBuilder.Entity("ProvaBackEnd.Models.Folha", b =>
