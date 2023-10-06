@@ -11,8 +11,8 @@ using ProvaBackEnd.Data;
 namespace ProvaBackEnd.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20231006131709_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231006135213_Migracao")]
+    partial class Migracao
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
