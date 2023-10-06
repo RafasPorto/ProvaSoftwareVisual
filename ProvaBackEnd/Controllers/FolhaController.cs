@@ -14,33 +14,41 @@ public class FolhaController:ControllerBase
         _ctx = ctx;
     }
 
-    [HttpPost]
-    [Route("cadastrar")]
-    public IActionResult Cadastrar([FromBody] int valor, int quantidade, int mes, int ano, int FuncionarioId)
+ [HttpPost]
+[Route("cadastrar")]
+public IActionResult Cadastrar([FromBody] Folha folha)
+{
+    try
     {
-        try
+        if (folha == null)
         {
-            Folha novaFolha= new Folha();
-            novaFolha.ValorHora = valor;
-            novaFolha.QuantidadeHoras=quantidade;
-            novaFolha.Mes=mes;
-            novaFolha.Ano = ano;
-            novaFolha.Funcionario.FuncionarioId= FuncionarioId;
-            novaFolha.SalarioBruto =novaFolha.SalarioB();
-            novaFolha.ImpostoRenda =novaFolha.ImpostoRendaCalc();
-            novaFolha.Inss =novaFolha.InssCalc();
-            novaFolha.Fgts =novaFolha.FgtsCalc();
-            novaFolha.SalarioLiquido =novaFolha.SalarioL();
-            _ctx.Add(novaFolha);
-            _ctx.SaveChanges();
-            return Created("", novaFolha);
+            return BadRequest("Dados de folha inválidos.");
+        }
 
-        }
-        catch (Exception e)
+        if (folha.FuncionarioId <= 0)
         {
-            return NotFound(e.Message);
+            return BadRequest("FuncionarioId inválido.");
         }
+
+        folha.SalarioBruto = folha.SalarioB(folha.ValorHora, folha.QuantidadeHoras);
+        folha.ImpostoRenda = folha.ImpostoRendaCalc();
+        folha.Inss = folha.InssCalc();
+        folha.Fgts = folha.FgtsCalc();
+        folha.SalarioLiquido = folha.SalarioL();
+
+        _ctx.Folhas.Add(folha);
+
+        _ctx.SaveChanges();
+
+        return Created("",folha);
     }
+    catch (Exception e)
+    {
+        return StatusCode(500, e.Message);
+    }
+}
+
+
     [HttpGet("listar")]
     public IActionResult Listar()
     {
